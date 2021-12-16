@@ -35,7 +35,7 @@
         <div>
             @if ($componentSelector)
                 <div>
-                    <x-builder-componentModal wire:model='componentSelector'>
+                    <x-builder.componentModal wire:model='componentSelector'>
                         <div class="px-5 mt-5">
                             {{-- <label for="email" class="block text-sm font-medium text-gray-700">Email</label> --}}
                             <div class="relative shadow-sm outline-none rounded-2xl focus:outline-none">
@@ -78,7 +78,7 @@
                                 @endforelse
                             </div>
                         </div>
-                    </x-builder-componentModal>
+                    </x-builder.componentModal>
                 </div>
             @endif
         </div>
