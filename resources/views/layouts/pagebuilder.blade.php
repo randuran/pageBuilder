@@ -22,7 +22,7 @@
     <div x-data="{slideOver: false}">
         <div>
             @auth
-                <x-builder-topbar />
+                <x-builder.topbar />
 
             @endauth
             @livewire('navbar')
