@@ -15,9 +15,16 @@ final class InstallPagebuilder extends Command
     public function handle()
     {
         $this->info("Installing Page Builder... 🛠\n");
+
+        $this->setup();
         $this->publishComponents();
 
         $this->createPages();
+    }
+
+    public function setup()
+    {
+        File::delete(resource_path('sass/app.scss'));
     }
 
     /**
@@ -45,19 +52,6 @@ final class InstallPagebuilder extends Command
      */
     protected function publishComponents()
     {
-        $this->line('<fg=yellow;>Publishing Components...</>');
-
-        $path = resource_path('views/components/');
-
-        if (!File::isDirectory($path . 'modal')) {
-            File::makeDirectory($path . 'modal');
-        }
-
-        copy(__DIR__ . '/../../../resources/views/builder/modal/base.blade.php', resource_path('views/components/modal/base.blade.php'));
-        copy(__DIR__ . '/../../../resources/views/builder/modal/confirmation.blade.php', resource_path('views/components/modal/confirmation.blade.php'));
-        copy(__DIR__ . '/../../../resources/views/builder/modal/dialog.blade.php', resource_path('views/components/modal/dialog.blade.php'));
-
-
         $this->info("done \n");
     }
 }
