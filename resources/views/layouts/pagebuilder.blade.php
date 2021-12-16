@@ -35,8 +35,8 @@
         </main>
         <div>
             @auth
-                <x-builder-mode />
-                <x-builder-notify />
+                <x-builder.mode />
+                <x-builder.notify />
             @endauth
         </div>
     </div>
