@@ -31,8 +31,8 @@
         @endif
     </div>
 
-    @auth
-        <div>
+    <div>
+        @auth
             @if ($componentSelector)
                 <div>
                     <x-builder.componentModal wire:model='componentSelector'>
@@ -81,6 +81,6 @@
                     </x-builder.componentModal>
                 </div>
             @endif
-        </div>
-    @endauth
+        @endauth
+    </div>
 </div>
