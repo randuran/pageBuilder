@@ -27,15 +27,11 @@
             @endauth
             @livewire('navbar')
         </div>
-        <div>
-            @livewire('sidebar')
-        </div>
         <main>
             {{ $slot }}
         </main>
         <div>
             @auth
-                <x-builder.mode />
                 <x-builder.notify />
             @endauth
         </div>

@@ -12,11 +12,14 @@ class Container extends Model
         'page_id',
         'component_id',
         'options',
+        'draft',
+        'status',
         'position',
     ];
 
     protected $casts = [
         'options' => 'array',
+        'draft' => 'array',
     ];
 
     /**
@@ -37,5 +40,10 @@ class Container extends Model
     public function component()
     {
         return $this->belongsTo(Component::class);
+    }
+
+    public function getCurrentStatusAttribute()
+    {
+        return 'Publish';
     }
 }

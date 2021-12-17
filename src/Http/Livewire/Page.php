@@ -14,9 +14,9 @@ final class Page extends Component
     public $search = '';
     public $menu = [];
     public $page;
+    public $mustSave = false;
 
-
-    protected $listeners = ['refresh', 'insertComponent'];
+    protected $listeners = ['refresh', 'insertComponent', 'componentUpdated'];
 
     /**
      * Get the current page
@@ -36,6 +36,14 @@ final class Page extends Component
         }
 
         $this->page = ModelPage::whereSlug($path)->first();
+
+        if (!isset($this->page)) return;
+
+        $unsaved = $this->page->containers->where('draft');
+
+        if ($unsaved->count()) {
+            $this->mustSave = true;
+        }
     }
 
     public function insertComponent()
@@ -51,7 +59,6 @@ final class Page extends Component
      */
     public function assignComponent($component)
     {
-
         $container = [
             'page_id' => $this->page->id,
             'component_id' => $component['id'],
@@ -60,7 +67,7 @@ final class Page extends Component
         ];
 
         Container::create($container);
-        $this->page->refresh($container);
+        $this->page->refresh();
 
         $this->componentSelector = false;
     }
@@ -75,6 +82,46 @@ final class Page extends Component
     {
         $this->notify('removed');
         $this->page->refresh();
+    }
+
+    /**
+     * Storage changes in draft until page is save
+     *
+     * @param [type] $data
+     * @return void
+     */
+    public function componentUpdated($data)
+    {
+
+        $container = Container::find($data['container_id']);
+
+
+        $container->update([
+            'draft' => $data['options'],
+        ]);
+
+        $this->mustSave = true;
+
+        $container->refresh();
+    }
+
+
+    public function updatePage()
+    {
+        $containers = $this->page->containers;
+
+        foreach ($containers as $container) {
+            if ($container->draft != null) {
+                $container->update([
+                    'options' => $container->draft,
+                    'draft' => null,
+                ]);
+            }
+        }
+
+        $this->mustSave = false;
+
+        $this->notify('page was updated');
     }
 
 

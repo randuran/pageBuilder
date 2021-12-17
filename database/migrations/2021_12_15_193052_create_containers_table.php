@@ -18,7 +18,9 @@ class CreateContainersTable extends Migration
             $table->foreignId('page_id')->constrained();
             $table->foreignId('component_id')->constrained();
             $table->json('options');
+            $table->json('draft')->nullable();
             $table->integer('position');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

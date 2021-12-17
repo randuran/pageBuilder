@@ -1,16 +1,18 @@
 <div>
     <div>
         @if (isset($page))
-            @forelse($page->containers as $container)
+            @forelse(auth()->user() ? $page->containers : $page->containers->where('status', true) as $container)
                 @php
                     $component = strtolower($container->component->name);
                     $path = strtolower($container->component->path);
                 @endphp
 
+
                 <div x-data="{toolbar: false}" @mouseover="toolbar = true" @mouseleave="toolbar = false"
                     wire:key="block-{{ $container->id }}">
                     @livewire("$path.$component", ['container' => $container], key('container.' . $container->id))
                 </div>
+
             @empty
                 @auth
                     <div class="mt-20 text-center">
@@ -79,6 +81,15 @@
                     </div>
                 </x-builder.componentModal>
             @endif
+            @if ($mustSave)
+                <x-builder.mode />
+            @endif
         @endauth
     </div>
+
+    @auth
+        <div>
+            @livewire('sidebar', ['page' => $page])
+        </div>
+    @endauth
 </div>

@@ -13,13 +13,13 @@
             x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
             class="w-full max-w-sm rounded-lg shadow-lg pointer-events-auto bg-gray-50">
-            <div class="overflow-hidden rounded-lg shadow-xs">
+            <div class="overflow-hidden border-4 border-black rounded-lg shadow-xs">
                 <div class="p-4">
                     <div class="flex items-start">
                         <div class="flex-shrink-0">
                         </div>
                         <div class="ml-3 w-0 flex-1 pt-0.5">
-                            <p x-text="message" class="text-sm font-medium leading-5 text-gray-900"></p>
+                            <p x-text="message" class="text-sm font-bold leading-5 text-black"></p>
                         </div>
                         <div class="flex flex-shrink-0 ml-4">
                             <button @click="remove(message)"

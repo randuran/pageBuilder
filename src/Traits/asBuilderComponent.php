@@ -11,22 +11,31 @@ trait asBuilderComponent
     public $component_id;
     public $option = [];
 
-    public $content = [
-        'key' => '',
-        'old' => '',
-        'new' => '',
-    ];
-
+    /**
+     * Emit the content when it changes
+     *
+     * @return void
+     */
     public function updated()
     {
-        $this->container->update(['options' => json_encode($this->option)]);
+        $this->emitUp('componentUpdated', [
+            'container_id' => $this->container->id,
+            'options' => json_encode($this->option)
+        ]);
+
+        $this->container->refresh();
+        // $this->container->update(['options' => json_encode($this->option)]);
     }
 
     final public function mount($container)
     {
         $this->container = $container;
         $this->component = $container->component;
-        $this->option = json_decode($container->options, true);
+        if ($container->draft !== null && auth()->user() !== null) {
+            $this->option = json_decode($container->draft, true);
+        } else {
+            $this->option = json_decode($container->options, true);
+        }
     }
 
     final public function remove()
@@ -40,16 +49,14 @@ trait asBuilderComponent
         $this->emitUp('insertComponent');
     }
 
-    final public function updateContent()
+    final public function toggleStatus()
     {
-        if ($this->content['new'] == '') {
-            $this->option[$this->content['key']]['content'] = $this->content['old'];
-        } else {
-            $this->option[$this->content['key']]['content'] = $this->content['new'];
-        }
 
-        $this->container->update(
-            ['options' => json_encode($this->option)],
-        );
+        $this->container->update([
+            'status' => $this->container->status ? 0 : 1,
+        ]);
+
+        $this->notify($this->container->status ? 'publish' : 'Unpublished');
+        $this->container->refresh();
     }
 }

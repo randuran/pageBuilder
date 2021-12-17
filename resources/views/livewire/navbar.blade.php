@@ -31,16 +31,6 @@
         </div>
     </div>
 
-    <!--
-    Mobile menu, show/hide based on mobile menu state.
-
-    Entering: "duration-200 ease-out"
-      From: "opacity-0 scale-95"
-      To: "opacity-100 scale-100"
-    Leaving: "duration-100 ease-in"
-      From: "opacity-100 scale-100"
-      To: "opacity-0 scale-95"
-  -->
     <div class="absolute inset-x-0 top-0 p-2 transition origin-top-right transform md:hidden">
         <div class="bg-white divide-y-2 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-gray-50">
             <div class="px-5 pt-5 pb-6">

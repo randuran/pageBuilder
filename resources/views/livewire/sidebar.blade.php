@@ -19,28 +19,60 @@
                     x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0"
                     class="absolute top-0 left-0 flex pt-4 pr-2 -ml-8 sm:-ml-10 sm:pr-4">
-                    <button @click="slideOver = false" type="button"
-                        class="text-gray-300 rounded-md hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
-                        <span class="sr-only">Close panel</span>
-                        <!-- Heroicon name: outline/x -->
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
                 </div>
 
-                <div class="flex flex-col h-full py-6 overflow-y-scroll bg-white shadow-xl">
-                    <div class="px-4 sm:px-6">
-                        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
-                            Panel title
-                        </h2>
-                    </div>
-                    <div class="relative flex-1 px-4 mt-6 sm:px-6">
-                        <!-- Replace with your content -->
+                <div class="flex flex-col h-full overflow-y-scroll bg-white shadow-xl">
 
-                        <!-- /End replace -->
+                    <div class="px-4 py-6 bg-white sm:px-6">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-lg font-bold text-black" id="slide-over-title">
+                                {{ __('Pages') }}
+                            </h2>
+                            <div class="flex items-center ml-3 h-7">
+                                <button @click="slideOver = false" type="button"
+                                    class="text-black rounded-md focus:outline-none focus:ring-2 focus:ring-white">
+                                    <span class="sr-only">Close panel</span>
+                                    <!-- Heroicon name: outline/x -->
+                                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-1">
+                            <p class="text-sm text-black">
+                                Get started by filling in the information below to create your new project.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-4">
+
+                        <div>
+                            <div class="border-b border-gray-200">
+                                <nav class="flex -mb-px space-x-4" aria-label="Tabs">
+                                    <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
+                                    <a href="#"
+                                        class="px-1 py-4 text-sm font-medium text-black border-b-2 border-black whitespace-nowrap"
+                                        aria-current="page">
+
+                                        {{ __('All') }}
+                                    </a>
+
+                                    <a href="#"
+                                        class="px-1 py-4 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300 whitespace-nowrap">
+                                        {{ __('Unpublished') }}
+                                    </a>
+
+                                    <a href="#"
+                                        class="px-1 py-4 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300 whitespace-nowrap">
+                                        {{ __('Deleted') }}
+                                    </a>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
