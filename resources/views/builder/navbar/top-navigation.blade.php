@@ -1,4 +1,4 @@
-<div class="bg-gray-800">
+<div class="bg-black">
     <div class="flex items-center justify-between h-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div>
             <a href="https://randyduran.dev/pagebuilder" target="_blank" class="font-semibold text-white">

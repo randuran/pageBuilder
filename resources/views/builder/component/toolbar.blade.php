@@ -1,6 +1,6 @@
 @auth
     <div x-show="toolbar" x-transition
-        class="absolute top-0 z-50 flex justify-center px-2 pt-1 space-x-3 text-white transform bg-black rounded-md left-1/2">
+        class="absolute top-0 z-50 flex justify-center px-2 pt-1 space-x-3 text-white transform bg-black rounded-md right-10">
         <div>
             <button wire:click="newComponent" type="button">
                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
