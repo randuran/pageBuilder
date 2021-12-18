@@ -56,6 +56,7 @@ class PageBuilderServiceProvider extends ServiceProvider
         $this->registerComponent('component.mode', 'mode');
         $this->registerComponent('component.new', 'new');
         $this->registerComponent('component.toolbar', 'toolbar');
+        $this->registerComponent('component.component', 'component');
 
         //Modal
         $this->registerComponent('modal.base', 'baseModal');
@@ -64,6 +65,7 @@ class PageBuilderServiceProvider extends ServiceProvider
         //EDITOR
         $this->registerComponent('editor.text', 'textEditor');
         $this->registerComponent('editor.editable', 'editable');
+        $this->registerComponent('editor.editable-bar', 'editableBar');
     }
 
     /**

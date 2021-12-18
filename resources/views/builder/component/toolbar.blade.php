@@ -1,9 +1,9 @@
 @auth
-    <div x-show="toolbar" x-transition
+    <div x-show="toolbar"
         class="absolute top-0 z-50 flex justify-center px-2 pt-1 space-x-5 text-black align-middle transform bg-white border-4 border-gray-200 rounded-md shadow-md right-10">
 
         <div>
-            <button wire:click="toggleStatus">
+            <button wire:click="toggleStatus" type="button">
                 @if ($container->status)
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 hover:text-red-500" fill="currentColor"
                         class="bi bi-eye-fill" viewBox="0 0 16 16">

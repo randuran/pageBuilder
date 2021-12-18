@@ -1,37 +1,39 @@
 <div>
-    <div>
-        @if (isset($page))
-            @forelse(auth()->user() ? $page->containers : $page->containers->where('status', true) as $container)
-                @php
-                    $component = strtolower($container->component->name);
-                    $path = strtolower($container->component->path);
-                @endphp
 
-
+    @if (isset($page))
+        @forelse(auth()->user() ? $page->containers : $page->containers->where('status', true) as $container)
+            @php
+                $component = strtolower($container->component->name);
+                $path = strtolower($container->component->path);
+            @endphp
+            @auth
                 <div x-data="{toolbar: false}" @mouseover="toolbar = true" @mouseleave="toolbar = false"
                     wire:key="block-{{ $container->id }}">
                     @livewire("$path.$component", ['container' => $container], key('container.' . $container->id))
                 </div>
-
-            @empty
-                @auth
-                    <div class="mt-20 text-center">
-                        <p class="mb-4 text-2xl font-normal text-gray-400">{{ __('Insert the first component') }}</p>
-                        <button wire:click="insertComponent()" type="button"
-                            class="relative inline-flex items-center px-2 py-2 text-sm font-medium bg-gray-600 rounded-md hover:bg-gray-800">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="w-5 h-5 text-white bi bi-plus-square" viewBox="0 0 16 16">
-                                <path
-                                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                                <path
-                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                            </svg>
-                        </button>
-                    </div>
-                @endauth
-            @endforelse
-        @endif
-    </div>
+            @else
+                <div wire:key="block-{{ $container->id }}">
+                    @livewire("$path.$component", ['container' => $container], key('container.' . $container->id))
+                </div>
+            @endauth
+        @empty
+            @auth
+                <div class="mt-20 text-center">
+                    <p class="mb-4 text-2xl font-normal text-gray-400">{{ __('Insert the first component') }}</p>
+                    <button wire:click="insertComponent()" type="button"
+                        class="relative inline-flex items-center px-2 py-2 text-sm font-medium bg-gray-600 rounded-md hover:bg-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="w-5 h-5 text-white bi bi-plus-square" viewBox="0 0 16 16">
+                            <path
+                                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                    </button>
+                </div>
+            @endauth
+        @endforelse
+    @endif
 
     <div>
         @auth
@@ -81,15 +83,8 @@
                     </div>
                 </x-builder.componentModal>
             @endif
-            @if ($mustSave)
-                <x-builder.mode />
-            @endif
+            @if ($mustSave)<x-builder.mode />@endif
+            @livewire('sidebar', ['page' => $page])
         @endauth
     </div>
-
-    @auth
-        <div>
-            @livewire('sidebar', ['page' => $page])
-        </div>
-    @endauth
 </div>
