@@ -15,7 +15,6 @@ final class InstallPagebuilder extends Command
     public function handle()
     {
         $this->info("Installing Page Builder... 🛠\n");
-
         $this->setup();
         $this->createPages();
     }
@@ -23,6 +22,11 @@ final class InstallPagebuilder extends Command
     public function setup()
     {
         File::delete(resource_path('sass/app.scss'));
+
+        if (!$this->configExists('builder.php')) {
+            $this->publishConfiguration();
+            $this->info('Published configuration');
+        }
     }
 
     /**
@@ -41,5 +45,20 @@ final class InstallPagebuilder extends Command
                 'status' => true,
             ]);
         }
+    }
+
+
+    private function publishConfiguration($forcePublish = false)
+    {
+        $params = [
+            '--provider' => "Randyduran\Pagebuilder\Providers\PageBuilderServiceProvider",
+            '--tag' => "builder-config"
+        ];
+
+        if ($forcePublish === true) {
+            $params['--force'] = true;
+        }
+
+        $this->call('vendor:publish', $params);
     }
 }

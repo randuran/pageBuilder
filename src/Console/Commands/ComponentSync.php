@@ -10,19 +10,12 @@ use Randyduran\Pagebuilder\Models\Component;
 class ComponentSync extends Command
 {
 
-    protected $signature = 'builder:sync';
+    protected $signature = 'builder:update';
     protected $description = 'Syncronize component list';
 
     public function handle()
     {
-
-        if (!$this->configExists('builder.php')) {
-            $this->publishConfiguration();
-            $this->info('Published configuration');
-        }
-
         $this->sync();
-
         $this->info("Enjoy building your website 😉 \n");
     }
 
@@ -38,28 +31,10 @@ class ComponentSync extends Command
             if (isset($component['name'])) {
                 $exist = Component::where('name', $component['name'])->first();
                 if (!$exist) {
+                    $this->info("Publishing {$component['name']} \n");
                     Component::create($component);
                 }
             }
         }
-    }
-
-    private function configExists($fileName)
-    {
-        return File::exists(config_path($fileName));
-    }
-
-    private function publishConfiguration($forcePublish = false)
-    {
-        $params = [
-            '--provider' => "Randyduran\Pagebuilder\Providers\PageBuilderServiceProvider",
-            '--tag' => "builder-config"
-        ];
-
-        if ($forcePublish === true) {
-            $params['--force'] = true;
-        }
-
-        $this->call('vendor:publish', $params);
     }
 }
