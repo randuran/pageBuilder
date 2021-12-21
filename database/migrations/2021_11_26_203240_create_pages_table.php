@@ -18,6 +18,7 @@ class CreatePagesTable extends Migration
             $table->foreignId('user_id')->nullable()->constrained();
             $table->foreignId('parent_id')->nullable()->constrained('pages');
             $table->text('title')->unique();
+            $table->text('background')->default('bg-white');
             $table->text('slug')->unique();
             $table->boolean('status')->default(0);
             $table->boolean('has_children')->default(0);
