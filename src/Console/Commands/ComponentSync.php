@@ -36,10 +36,11 @@ class ComponentSync extends Command
             return;
         }
         foreach ($components as $component) {
-            $exist = Component::where('name', $component['name'])->first();
-
-            if (!$exist) {
-                Component::create($component);
+            if (isset($component['name'])) {
+                $exist = Component::where('name', $component['name'])->first();
+                if (!$exist) {
+                    Component::create($component);
+                }
             }
         }
     }

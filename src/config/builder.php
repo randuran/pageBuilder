@@ -15,16 +15,10 @@ return [
 
     'components' => [
         [
-            'name' => '',
-            'description' => '',
-            'path' => 'header.simple-header',
-            'options' => [],
+            'name' => '', //Name of the component that will be visible in the selector
+            'description' => '', //Brief description of the package
+            'path' => '', //path including the component name, omitting livewire, e.g. header/example
+            'options' => [], //The component options, check the Page Builder documentation.
         ],
-        [
-            'name' => '',
-            'description' => '',
-            'file' => 'header.simple-header',
-            'options' => [],
-        ]
     ],
 ];
