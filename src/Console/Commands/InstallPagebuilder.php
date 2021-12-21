@@ -17,7 +17,6 @@ final class InstallPagebuilder extends Command
         $this->info("Installing Page Builder... 🛠\n");
 
         $this->setup();
-        $this->publishComponents();
         $this->createPages();
     }
 
