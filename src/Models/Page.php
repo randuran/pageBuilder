@@ -16,7 +16,7 @@ class Page extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['user_id', 'parent_id', 'title', 'slug', 'status', 'has_children'];
+    protected $fillable = ['user_id', 'parent_id', 'title', 'slug', 'background', 'status', 'has_children'];
 
     /**
      * The attributes that should be hidden for serialization.

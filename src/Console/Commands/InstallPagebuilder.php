@@ -18,7 +18,6 @@ final class InstallPagebuilder extends Command
 
         $this->setup();
         $this->publishComponents();
-
         $this->createPages();
     }
 
@@ -43,15 +42,5 @@ final class InstallPagebuilder extends Command
                 'status' => true,
             ]);
         }
-    }
-
-    /**
-     * Publish page builder components
-     *
-     * @return void
-     */
-    protected function publishComponents()
-    {
-        $this->info("done \n");
     }
 }

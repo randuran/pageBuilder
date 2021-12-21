@@ -16,6 +16,7 @@ class ComponentSync extends Command
     public function handle()
     {
 
+        $this->info("Enjoy building your website 😉 \n");
         if (!$this->configExists('builder.php')) {
             $this->publishConfiguration();
             // $this->info('Published configuration');
@@ -23,15 +24,23 @@ class ComponentSync extends Command
 
         $this->sync();
 
-        $this->info('All components have synchronized... 🙂');
+        $this->info("Enjoy building your website 😉 \n");
     }
 
     public function sync()
     {
         $components = Config::get('builder.components');
 
+        if (count($components) == 0) {
+            $this->info('No components found');
+            return;
+        }
         foreach ($components as $component) {
-            Component::create($component);
+            $exist = Component::where('name', $component['name'])->first();
+
+            if (!$exist) {
+                Component::create($component);
+            }
         }
     }
 

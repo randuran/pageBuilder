@@ -103,11 +103,11 @@ class PageBuilderServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/builder.php' => config_path('builder.php')
-        ], 'pagebuilder-config');
+        ], 'builder-config');
 
         $this->publishes([
             __DIR__ . '/../../resources/views/layouts/pagebuilder.blade.php' => resource_path('views/layouts/pagebuilder.blade.php')
-        ], 'pagebuilder-layout');
+        ], 'builder-layout');
     }
 
     protected function pageBuilderLoader()
