@@ -16,10 +16,9 @@ class ComponentSync extends Command
     public function handle()
     {
 
-        $this->info("Enjoy building your website 😉 \n");
         if (!$this->configExists('builder.php')) {
             $this->publishConfiguration();
-            // $this->info('Published configuration');
+            $this->info('Published configuration');
         }
 
         $this->sync();
