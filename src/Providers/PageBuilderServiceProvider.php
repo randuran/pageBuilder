@@ -65,7 +65,13 @@ class PageBuilderServiceProvider extends ServiceProvider
         //EDITOR
         $this->registerComponent('editor.text', 'textEditor');
         $this->registerComponent('editor.editable', 'editable');
-        $this->registerComponent('editor.editable-bar', 'editableBar');
+        $this->registerComponent('editor.linkable', 'linkable');
+
+        //Tools
+        $this->registerComponent('tool.editable-bar', 'editableBar');
+        $this->registerComponent('tool.editable-button', 'editableButton');
+        $this->registerComponent('tool.dropdown', 'tool-dropdown');
+        $this->registerComponent('button.tool', 'toolbar-item');
     }
 
     /**

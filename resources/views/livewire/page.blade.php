@@ -9,11 +9,11 @@
             @auth
                 <div x-data="{toolbar: false}" @mouseover="toolbar = true" @mouseleave="toolbar = false"
                     wire:key="block-{{ $container->id }}">
-                    @livewire("$path.$component", ['container' => $container], key('container.' . $container->id))
+                    @livewire("$path", ['container' => $container], key('container.' . $container->id))
                 </div>
             @else
                 <div wire:key="block-{{ $container->id }}">
-                    @livewire("$path.$component", ['container' => $container], key('container.' . $container->id))
+                    @livewire("$path", ['container' => $container], key('container.' . $container->id))
                 </div>
             @endauth
         @empty
