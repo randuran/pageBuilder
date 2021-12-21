@@ -28,7 +28,7 @@ class ComponentSync extends Command
             return;
         }
         foreach ($components as $component) {
-            if (isset($component['name'])) {
+            if ($component['name'] !== '') {
                 $exist = Component::where('name', $component['name'])->first();
                 if (!$exist) {
                     $this->info("Publishing {$component['name']} \n");
