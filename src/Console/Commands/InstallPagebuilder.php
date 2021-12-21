@@ -61,4 +61,10 @@ final class InstallPagebuilder extends Command
 
         $this->call('vendor:publish', $params);
     }
+
+
+    private function configExists($fileName)
+    {
+        return File::exists(config_path($fileName));
+    }
 }
