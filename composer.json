@@ -1,33 +1,33 @@
 {
-    "name": "randyduran/pagebuilder",
-    "description": "Page builder for Laravel",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Randyduran\\Pagebuilder\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Randy Durán",
-            "email": "dev@randyduran.dev"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "php": "^7.4|^8.0",
-        "illuminate/contracts": "^8.0",
-        "cviebrock/eloquent-sluggable": "^8.0"
-    },
-    "require-dev": {},
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Randyduran\\Pagebuilder\\Providers\\PageBuilderServiceProvider"
-            ],
-            "aliases": {
-                "Pagebuilder": "Randyduran\\Pagebuilder\\Facade"
-            }
-        }
+  "name": "randyduran/pagebuilder",
+  "description": "A Page builder for Laravel.",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Randyduran\\Pagebuilder\\": "src/"
     }
+  },
+  "authors": [
+    {
+      "name": "Randy Durán",
+      "email": "dev@randyduran.dev"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.4|^8.0",
+    "illuminate/contracts": "^8.0",
+    "cviebrock/eloquent-sluggable": "^8.0"
+  },
+  "require-dev": {},
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Randyduran\\Pagebuilder\\Providers\\PageBuilderServiceProvider"
+      ],
+      "aliases": {
+        "Pagebuilder": "Randyduran\\Pagebuilder\\Facade"
+      }
+    }
+  }
 }
