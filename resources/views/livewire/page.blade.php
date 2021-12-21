@@ -1,15 +1,15 @@
 <div>
-
+    @section('body_class', $page->background)
     @if (isset($page))
         @forelse(auth()->user() ? $page->containers : $page->containers->where('status', true) as $container)
             @php
                 $component = strtolower($container->component->name);
-                $path = strtolower($container->component->path);
             @endphp
             @auth
                 <div x-data="{toolbar: false}" @mouseover="toolbar = true" @mouseleave="toolbar = false"
                     wire:key="block-{{ $container->id }}">
-                    @livewire("$path", ['container' => $container], key('container.' . $container->id))
+                    @livewire(strtolower($container->component->path), ['container' => $container], key('container.' .
+                    $container->id))
                 </div>
             @else
                 <div wire:key="block-{{ $container->id }}">

@@ -17,7 +17,7 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased">
+<body class="@yield('body_class')">
 
     <div x-data="{slideOver: false}">
         <div>
