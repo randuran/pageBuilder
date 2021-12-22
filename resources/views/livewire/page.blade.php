@@ -13,7 +13,8 @@
                 </div>
             @else
                 <div wire:key="block-{{ $container->id }}">
-                    @livewire("$path", ['container' => $container], key('container.' . $container->id))
+                    @livewire(strtolower($container->component->path), ['container' => $container], key('container.' .
+                    $container->id))
                 </div>
             @endauth
         @empty
