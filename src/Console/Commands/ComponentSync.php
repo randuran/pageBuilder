@@ -37,6 +37,9 @@ class ComponentSync extends Command
                     Component::create($component);
                     $this->line("Creating Livewire {$component['name']} component");
                     Artisan::call("make:livewire  {$component['path']}");
+                } else {
+                    $this->info("Updating {$component['name']}");
+                    $exist->update($component);
                 }
             }
         }
